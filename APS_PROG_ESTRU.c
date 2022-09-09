@@ -18,7 +18,7 @@ void imprimir_dados(int x[]);
 int main(){
 
 int A[N],B[N],C[N],D[N],E[N];
-int i , soma_par = 0, maior_soma;
+int i , maior_soma;
 
 //1. Criar 5 vetores contendo 10 valores reais gerados aleatoriamente;
 srand(time(NULL));
@@ -54,8 +54,8 @@ printf("Soma vetor E: %d\n", soma_pares(E));
 
 //3. Retornar maior elemento do item 2;
 
-maior_soma = 0;
-maior_soma = soma_pares(A);
+maior_soma = 0; // Identificação da maior soma !
+maior_soma = soma_pares(A); // Sem exito ao passar para um procedimento.
 if(maior_soma < soma_pares(B)){
     maior_soma = soma_pares(B);
 }else{
@@ -81,14 +81,14 @@ printf("\nO maior valor eh %d\n", maior_soma);
     return 0;
 }
 
-int gerador_valores(int x[]){
+int gerador_valores(int x[]){ //gerar valores aleatorios .
     int i;
     for(i=0;i<N;i++){
         x[i] = rand()%10;
     }
 }
 
-int soma_pares(int x[]){
+int soma_pares(int x[]){ //soma dos valores APENAS PARES .
    int i, soma = 0;
    for(i=0;i<N;i++){
        if(x[i]%2==0){
@@ -98,11 +98,7 @@ int soma_pares(int x[]){
    return soma;
 }
 
-int soma_vetor(int x[]){
-    printf("Soma vetor A: %d\n", soma_pares(x));
-}
-
-void imprimir_dados(int x[]){
+void imprimir_dados(int x[]){ //imprimir dados aleatorios
 	int i;
 	for(i=0;i<N;i++){
 		printf(" [%d] = %d ", i, x[i]);
