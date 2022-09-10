@@ -11,9 +11,10 @@
 #define N 10
 
 int gerador_valores(int x[]);
-int soma_pares(int x[]);
+int soma_pares(int x[],int q);
 int soma_vetor(int x[]);
 void imprimir_dados(int x[]);
+int par(int x);
 
 int main(){
 
@@ -46,30 +47,30 @@ imprimir_dados(E);
 //2. Utilizar uma função recursiva para somar apenas os elementos pares de cada vetor;
 
 printf("\n\nSoma dos vetores pares:\n\n");
-printf("Soma vetor A: %d\n", soma_pares(A));
-printf("Soma vetor B: %d\n", soma_pares(B));
-printf("Soma vetor C: %d\n", soma_pares(C));
-printf("Soma vetor D: %d\n", soma_pares(D));
-printf("Soma vetor E: %d\n", soma_pares(E));
+printf("Soma vetor A: %d\n", soma_pares(A , N));
+printf("Soma vetor B: %d\n", soma_pares(B , N));
+printf("Soma vetor C: %d\n", soma_pares(C , N));
+printf("Soma vetor D: %d\n", soma_pares(D , N));
+printf("Soma vetor E: %d\n", soma_pares(E , N));
 
 //3. Retornar maior elemento do item 2;
 
 maior_soma = 0; // Identificação da maior soma !
-maior_soma = soma_pares(A); // Sem exito ao passar para um procedimento.
-if(maior_soma < soma_pares(B)){
-    maior_soma = soma_pares(B);
+maior_soma = soma_pares(A , N); // Sem exito ao passar para um procedimento.
+if(maior_soma < soma_pares(B , N)){
+    maior_soma = soma_pares(B , N);
 }else{
-    if(maior_soma < soma_pares(C)){
-        maior_soma = soma_pares(C);
+    if(maior_soma < soma_pares(C , N)){
+        maior_soma = soma_pares(C , N);
     }else{
-        if(maior_soma < soma_pares(C)){
-            maior_soma = soma_pares(C);
+        if(maior_soma < soma_pares(C , N)){
+            maior_soma = soma_pares(C , N);
         }else{
-            if(maior_soma < soma_pares(D)){
-                maior_soma = soma_pares(D);
+            if(maior_soma < soma_pares(D , N)){
+                maior_soma = soma_pares(D , N);
             }else{
-                if(maior_soma < soma_pares(E)){
-                    maior_soma = soma_pares(E);
+                if(maior_soma < soma_pares(E , N)){
+                    maior_soma = soma_pares(E , N);
                 }
             }
         }
@@ -78,6 +79,7 @@ if(maior_soma < soma_pares(B)){
 
 printf("\nO maior valor eh %d\n", maior_soma);
 
+    getch();
     return 0;
 }
 
@@ -88,14 +90,12 @@ int gerador_valores(int x[]){ //gerar valores aleatorios .
     }
 }
 
-int soma_pares(int x[]){ //soma dos valores APENAS PARES .
-   int i, soma = 0;
-   for(i=0;i<N;i++){
-       if(x[i]%2==0){
-            soma = soma + x[i];
-       }
-   }
-   return soma;
+int soma_pares(int x[],int q){ //soma dos valores APENAS PARES .
+    if(q == 0){
+        return par(x[0]);
+    }else{
+        return par(x[q-1]) + par(soma_pares(x,q-1));
+    }
 }
 
 void imprimir_dados(int x[]){ //imprimir dados aleatorios
@@ -103,6 +103,14 @@ void imprimir_dados(int x[]){ //imprimir dados aleatorios
 	for(i=0;i<N;i++){
 		printf(" [%d] = %d ", i, x[i]);
 	}
+}
+
+int par(int x){
+    if(x%2==0){
+        return x;
+    }else{
+        return 0;
+    }
 }
 
 
